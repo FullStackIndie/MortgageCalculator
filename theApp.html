@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+
+<!--
+  TODO: Change Title
+-->
+<head>
+  <title>Mortgage Calculator</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/site.css">
+
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/a9c823f698.js" crossorigin="anonymous"></script>
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Courgette&family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
+
+</head>
+
+<body onload="load()">
+  <header>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" id="NavBar-BG">
+      <!--
+        TODO: Change Header name
+      -->
+      <a class="navbar-brand" href="index.html">Mortgage Calculator</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="theApp.html">The App<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="seeTheCode.html">See The Code</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://johnmurphyportfolio.netlify.app/" target="_blank">About The Developer</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+<main role="main" class="container-fluid">
+  <div class="container">
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="form-group">
+          <labe>Enter Loan Amount</labe>
+          <input type="number" class="form-control" id="initialPrincipal">
+        </div>
+        <div class="form-group">
+          <labe>Enter How Many Months To Pay Loan Off</labe>
+          <input type="number" class="form-control" id="initialMonths">
+        </div>
+        <div class="form-group">
+          <labe>Enter Interest Rate</labe>
+          <div class="input-group mb-3">
+            <input type="number" class="form-control" aria-label="" id="initialInterest">
+            <div class="input-group-append">
+              <span class="input-group-text">%</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group float-right">
+          <button onclick="calculateMortgage('true')" class="btn btn-dark" type="button">Calculate</button>
+        </div>
+      </div>
+      <div class="col-sm-3"></div>
+      <div class="col-sm-6">
+        <div class="row">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="row">
+                <h1>Your Monthly Results</h1>
+              </div>
+              
+              
+              </div>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="row">
+              <label style="font-size: 20px;">Total Principal</label>
+            </div>
+            <div class="row">
+              <label style="font-size: 20px;">Total Interest</label>
+            </div>
+            <div class="row">
+              <label style="font-size: 20px;">Total Cost</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="row">
+              <label style="font-size: 20px;">$ <span class="" id="resultPrincipal"></span></label>
+            </div>
+            <div class="row">
+              <label style="font-size: 20px;">$ <span class="text-left" id="resultInterest"></span></label>
+            </div>
+            <div class="row">
+              <label style="font-size: 20px;">$ <span class="text-left" id="resultCost"></span></label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <hr>
+  <table class="table table-striped" id="addressBook">
+    <thead class="thead-dark">
+      <tr>
+        <th>Month</th>
+        <th>Payment</th>
+        <th>Principal</th>
+        <th>Interest</th>
+        <th>Total Interest</th>
+        <th>Balance</th>
+      </tr>
+    </thead>
+    <tbody id="resultsBody">
+      <!-- Data Goes Here -->
+    </tbody>
+  </table>
+</main>
+
+  <!--
+    TODO: Change The Footer Title
+  -->
+  <footer class="footer mt-5" id="Footer-BG">
+    <div class="container">
+      <span style="color:bisque;">&copy; John Murphy 2021</span>
+    </div>
+  </footer>
+
+
+
+<template id="Data-Template">
+  <tr>
+    <td id="month"></td>
+    <td id="payment"></td>
+    <td id="principal"></td>
+    <td id="interest"></td>
+    <td id="totalInterest"></td>
+    <td id="balance"></td>
+</tr>
+</template>
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+  <!-- SweetAlert
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script> -->
+  <script src="/js/site.js"></script>
+</body>
+
+</html>                   

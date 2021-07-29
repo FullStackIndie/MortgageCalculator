@@ -1,0 +1,26 @@
+name: Build from Github, Deploy to AWS EC2
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+ continuous-deployment:
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: us-west-1
+
+    if: github.ref == 'refs/heads/main'
+    steps:
+  # Step 1
+      - name: Create CodeDeploy Deployment
+        run: 
+         aws deploy create-deployment
+            --application-name MortgageCalculator
+            --deployment-group-name MortgageCalculator
+            --deployment-config-name CodeDeployDefault.OneAtATime
+            --github-location repository=${{ github.repository }},commitId=${{ github.sha }}
+  
+  
