@@ -1,16 +1,13 @@
 <!doctype html>
 <html lang="en">
 
-<!--
-  TODO: Change Title
--->
-
 <head>
   <title>Mortgage Calculator</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Check out the code that makes my Mortgage Calulator work">
+
   <!-- Favicon-->
   <link rel="icon" type="image/x-icon" href="https://dsm56ob6rdulz.cloudfront.net/favicon.ico" />
 
@@ -28,16 +25,11 @@
     rel="stylesheet">
 
   <link rel="stylesheet" href="https://dsm56ob6rdulz.cloudfront.net/MortgageCalculator/css/enlighterjs.min.css">
-
 </head>
 
 <body>
   <header>
-    <!-- Fixed navbar -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" id="NavBar-BG">
-      <!--
-        TODO: Change Header name
-      -->
       <a class="navbar-brand" href="index.html">Mortgage Calculator</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
         aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,9 +54,6 @@
     </nav>
   </header>
 
-  <!--
-    TODO: Change The Spacing and alignment
-  -->
   <!-- Begin page content -->
   <main role="main" class="container" id="MainTop-BG">
     <div class="row">
@@ -111,14 +100,11 @@ for (let i = 0; i < months; i++) { const dataRow=document.importNode(template.co
   document.getElementById("resultCost").textContent=initialLoan + totalInterest;
 
 }
-
-
         </pre>
       </div>
       <div class="col-3 col-md-3 col-lg-3"><img class="container-fluid"
           src="https://dsm56ob6rdulz.cloudfront.net/MortgageCalculator/img/js.png" /></div>
     </div>
-
     <div class="row">
       <div class="col-9 col-md-9 col-lg-9">
         <p>
@@ -134,7 +120,6 @@ return r;
       <div class="col-3 col-md-3 col-lg-3"></div>
       <div class="col-3 col-md-3 col-lg-3"></div>
     </div>
-
     <div class="row">
       <div class="col-9 col-md-9 col-lg-9">
         <p>
@@ -152,19 +137,13 @@ return m;
     </div>
   </main>
 
-  <!--
-    TODO: Change The Footer Title
-  -->
   <footer class="footer" id="Footer-BG">
     <div class="container">
-      <span style="color:bisque;">&copy; John Murphy 2021</span>
+      <span style="color:bisque;">&copy; John Murphy 2023</span>
     </div>
   </footer>
 
 
-
-
-  <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
@@ -177,11 +156,6 @@ return m;
     </script>
   <script src="https://dsm56ob6rdulz.cloudfront.net/MortgageCalculator/js/enlighterjs.min.js"></script>
   <script>
-    // INIT CODE - simple page-wide initialization based on css selectors
-    // - highlight all pre + code tags (CSS3 selectors)
-    // - use javascript as default language
-    // - use theme "enlighter" as default theme
-    // - replace tabs with 2 spaces
     EnlighterJS.init('pre', 'code', {
       language: 'javascript',
       theme: 'dracula',
