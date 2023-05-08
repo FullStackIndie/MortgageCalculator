@@ -11,13 +11,14 @@ on:
 
 jobs:
   upload-resetcache-publish:
-    uses: FullStackIndie/Reusable-Workflows/.github/workflows/deploy_static_website_s3_&_cloudfront.yml@main
+    uses: FullStackIndie/Reusable-Workflows/.github/workflows/Update_deploy_static_website_s3_&_cloudfront_invalidation.yml@main
     with:
       folder_path: /var/www/html/js_challenges
       owner_name: FullStackIndie
       repo_name: MortgageCalculator
       source_folder: ./
       dest_folder: MortgageCalculator
+      invalidation_path: /MortgageCalculator/*
     secrets:
       SERVER_SSH_HOST: ${{ secrets.SERVER_SSH_HOST }}
       SERVER_SSH_USERNAME: ${{ secrets.SERVER_SSH_USERNAME }}
@@ -25,6 +26,6 @@ jobs:
       SERVER_SSH_PORT: ${{ secrets.SERVER_SSH_PORT }}
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_REGION: ${{ secrets.AWS_REGION }}
       AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
       CLOUDFRONT_DITRIBUTION_ID: ${{ secrets.CLOUDFRONT_DITRIBUTION_ID }}
-      AWS_REGION: ${{ secrets.AWS_REGION }}
