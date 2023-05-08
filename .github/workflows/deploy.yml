@@ -1,53 +1,30 @@
-name: Build from Github, Deploy to Linux
+name: Deploy to Linux Server
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
+
+  pull_request:
+    branches: [main]
+
+  workflow_dispatch:
 
 jobs:
- continuous-integration:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Copying files to server
-      uses: appleboy/scp-action@v0.1.2
-      with:
-        host: ${{ secrets.REMOTE_HOST }}
-        username:  ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
-        port: ${{ secrets.REMOTE_PORT }}
-        rm: true
-        source: "/home/runner/work/MortgageCalculator/MortgageCalculator/"
-        target: "${{ secrets.REMOTE_DIR }}"
-
-
-
-
-
-
-# name: Build from Github, Deploy to AWS EC2
-
-# on:
-#   push:
-#     branches: [ main ]
-
-# jobs:
-#  continuous-deployment:
-#     runs-on: ubuntu-latest
-#     env:
-#       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#       AWS_DEFAULT_REGION: us-west-1
-
-#     if: github.ref == 'refs/heads/main'
-#     steps:
-#   # Step 1
-#       - name: Create CodeDeploy Deployment
-#         run: 
-#          aws deploy create-deployment
-#             --application-name MortgageCalculator
-#             --deployment-group-name MortgageCalculator
-#             --deployment-config-name CodeDeployDefault.OneAtATime
-#             --github-location repository=${{ github.repository }},commitId=${{ github.sha }}
-  
-  
+  upload-resetcache-publish:
+    uses: FullStackIndie/Reusable-Workflows/.github/workflows/deploy_static_website_s3_&_cloudfront.yml@main
+    with:
+      folder_path: /var/www/html/js_challenges
+      owner_name: FullStackIndie
+      repo_name: MortgageCalculator
+      source_folder: ./
+      dest_folder: MortgageCalculator
+    secrets:
+      SERVER_SSH_HOST: ${{ secrets.SERVER_SSH_HOST }}
+      SERVER_SSH_USERNAME: ${{ secrets.SERVER_SSH_USERNAME }}
+      SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
+      SERVER_SSH_PORT: ${{ secrets.SERVER_SSH_PORT }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+      CLOUDFRONT_DITRIBUTION_ID: ${{ secrets.CLOUDFRONT_DITRIBUTION_ID }}
+      AWS_REGION: ${{ secrets.AWS_REGION }}
